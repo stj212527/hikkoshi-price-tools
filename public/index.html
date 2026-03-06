@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>stjLab Tools | 匿名・無料の住まいツール集</title>
+<meta name="description" content="住所・氏名不要。家賃相場診断・引越し費用計算など、個人情報ゼロで使える無料ツール集。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#0b4cff;--blue2:#0aa7ff;--blue3:#0bd1ff;
+  --ink:#0b1b3a;--muted:#4b6287;--paper:#f4f7ff;--card:#fff;
+  --line:rgba(11,76,255,.12);--green:#10b959;
+}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--paper);color:var(--ink);line-height:1.7}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:rgba(11,76,255,.2);border-radius:99px}
+::selection{background:rgba(11,76,255,.15)}
+
+/* header */
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);box-shadow:0 2px 16px rgba(10,35,90,.07)}
+.header-in{max-width:860px;margin:0 auto;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-icon{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 5px 12px rgba(11,76,255,.28);display:flex;align-items:center;justify-content:center;font-size:15px}
+.logo-name{font-weight:900;font-size:15px;color:var(--ink)}
+.header-link{font-size:13px;font-weight:700;color:var(--muted);text-decoration:none;transition:color .15s}
+.header-link:hover{color:var(--blue)}
+
+/* page */
+.page{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+
+/* hero */
+.hero{border-radius:22px;overflow:hidden;box-shadow:0 20px 50px rgba(10,35,90,.20);background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 60%,var(--blue3) 100%);margin-bottom:24px}
+.hero-in{padding:44px 32px;background:radial-gradient(900px 300px at 15% 10%,rgba(255,255,255,.22),transparent 60%),radial-gradient(700px 260px at 90% 30%,rgba(255,255,255,.15),transparent 55%)}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);padding:5px 13px;border-radius:99px;color:#fff;font-size:11px;font-weight:800;margin-bottom:14px}
+.hero-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;opacity:.9}
+.hero h1{font-size:clamp(24px,5vw,38px);font-weight:900;color:#fff;line-height:1.22;letter-spacing:-.01em;margin-bottom:10px}
+.hero p{color:rgba(255,255,255,.88);font-size:15px;line-height:1.8;max-width:52ch;margin-bottom:22px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:14px}
+.hero-meta-item{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.78);font-size:12px;font-weight:700}
+.hero-meta-item::before{content:"✓";width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff}
+
+/* trust badges */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.trust-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 12px;text-align:center;box-shadow:0 6px 18px rgba(10,35,90,.07)}
+.trust-icon{font-size:24px;margin-bottom:7px}
+.trust-ttl{font-weight:900;font-size:13px;color:var(--ink);margin-bottom:3px}
+.trust-txt{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* tool cards */
+.tools-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:14px}
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.tool-card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px rgba(10,35,90,.08);overflow:hidden;transition:box-shadow .2s,transform .2s;text-decoration:none;display:flex;flex-direction:column}
+.tool-card:hover{box-shadow:0 16px 40px rgba(10,35,90,.14);transform:translateY(-3px)}
+.tool-card-head{padding:24px 22px 20px;border-bottom:1px solid var(--line)}
+.tool-card-icon{font-size:36px;margin-bottom:12px;line-height:1}
+.tool-card-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:6px}
+.tool-card-name{font-size:20px;font-weight:900;color:var(--ink);line-height:1.25;margin-bottom:6px}
+.tool-card-desc{font-size:13px;color:var(--muted);line-height:1.75}
+.tool-card-body{padding:18px 22px;flex:1}
+.tool-feature{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:13px;color:var(--ink)}
+.tool-feature::before{content:"✓";color:var(--blue);font-weight:900;flex-shrink:0;margin-top:1px}
+.tool-card-foot{padding:16px 22px;background:rgba(11,76,255,.03);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.tool-cta{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-weight:900;font-size:13px;padding:10px 20px;border-radius:10px;box-shadow:0 8px 18px rgba(11,76,255,.25);transition:all .18s}
+.tool-card:hover .tool-cta{box-shadow:0 12px 24px rgba(11,76,255,.32)}
+.tool-free-badge{font-size:11px;font-weight:700;color:var(--green);background:rgba(16,185,89,.10);border:1px solid rgba(16,185,89,.18);padding:4px 10px;border-radius:99px}
+
+/* privacy section */
+.privacy-section{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px rgba(10,35,90,.08);padding:26px 24px;margin-bottom:24px}
+.privacy-title{font-size:16px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.privacy-title::before{content:"";width:9px;height:9px;border-radius:3px;background:linear-gradient(135deg,var(--blue),var(--blue2))}
+.privacy-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.privacy-item{background:rgba(11,76,255,.04);border:1px solid rgba(11,76,255,.09);border-radius:12px;padding:14px 16px;font-size:13px;line-height:1.75;color:var(--ink)}
+
+/* faq */
+.faq-section{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px rgba(10,35,90,.08);padding:26px 24px;margin-bottom:24px}
+details{border-radius:10px;overflow:hidden;margin-bottom:4px}
+summary{padding:13px 16px;font-weight:700;font-size:14px;cursor:pointer;background:rgba(11,76,255,.04);list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--ink)}
+summary::-webkit-details-marker{display:none}
+summary span{font-size:10px;color:var(--muted)}
+details[open] summary{background:rgba(11,76,255,.07)}
+.faq-ans{padding:12px 16px;font-size:13px;color:var(--muted);line-height:1.8;background:rgba(11,76,255,.02)}
+
+/* blog cta */
+.blog-cta{background:linear-gradient(135deg,var(--blue) 0%,var(--blue2) 60%,var(--blue3) 100%);border-radius:20px;padding:32px 28px;text-align:center;box-shadow:0 16px 40px rgba(11,76,255,.25);margin-bottom:24px}
+.blog-cta h2{font-size:22px;font-weight:900;color:#fff;margin-bottom:8px}
+.blog-cta p{color:rgba(255,255,255,.78);font-size:14px;margin-bottom:22px}
+.blog-cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--blue);font-weight:900;font-size:14px;padding:13px 28px;border-radius:12px;text-decoration:none;box-shadow:0 10px 22px rgba(0,0,0,.12);transition:all .18s}
+.blog-cta-btn:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(0,0,0,.17)}
+
+/* footer */
+.footer{border-top:1px solid var(--line);padding:24px 20px}
+.footer-in{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-copy{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .38s cubic-bezier(.22,1,.36,1) both}
+.d1{animation-delay:.06s}.d2{animation-delay:.12s}.d3{animation-delay:.18s}.d4{animation-delay:.24s}.d5{animation-delay:.30s}
+
+/* responsive */
+@media(max-width:640px){
+  .trust-grid{grid-template-columns:1fr 1fr}
+  .tools-grid{grid-template-columns:1fr}
+  .privacy-grid{grid-template-columns:1fr}
+  .hero-in{padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-in">
+    <a href="/" class="logo">
+      <div class="logo-icon">🏠</div>
+      <span class="logo-name">stjLab Tools</span>
+    </a>
+    <a href="https://stjkulab.com" class="header-link">ブログへ →</a>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- ヒーロー -->
+  <div class="hero fu">
+    <div class="hero-in">
+      <div class="hero-badge">完全無料・匿名・個人情報不要</div>
+      <h1>住まいの「いくら？」を<br>30秒で診断</h1>
+      <p>住所・氏名・メールアドレス一切不要。地域や条件を選ぶだけで、家賃相場や引越し費用の目安レンジをすぐ表示します。</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">個人情報ゼロ</div>
+        <div class="hero-meta-item">会員登録不要</div>
+        <div class="hero-meta-item">ブラウザ完結</div>
+        <div class="hero-meta-item">節約ポイント付き</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 安心バッジ -->
+  <div class="trust-grid fu d1">
+    <div class="trust-card">
+      <div class="trust-icon">🔒</div>
+      <div class="trust-ttl">個人情報不要</div>
+      <div class="trust-txt">氏名・メアドの入力なし</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">💾</div>
+      <div class="trust-ttl">サーバー送信なし</div>
+      <div class="trust-txt">ブラウザ内で計算完結</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">👤</div>
+      <div class="trust-ttl">個人開発ツール</div>
+      <div class="trust-txt">業者提携・誘導なし</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon">¥0</div>
+      <div class="trust-ttl">完全無料</div>
+      <div class="trust-txt">課金・有料プランなし</div>
+    </div>
+  </div>
+
+  <!-- ツールカード -->
+  <p class="tools-title fu d2">利用できるツール</p>
+  <div class="tools-grid fu d2">
+
+    <!-- 家賃相場 -->
+    <a href="/tools/rent/" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-card-icon">🏠</div>
+        <div class="tool-card-tag">Rent Estimator</div>
+        <div class="tool-card-name">家賃相場<br>ざっくり診断</div>
+        <div class="tool-card-desc">地域・間取り・駅徒歩・築年数を選ぶだけで、あなたの条件に合った家賃の目安レンジを表示します。</div>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-feature">全国主要市区町村に対応</div>
+        <div class="tool-feature">駅徒歩・築年数・階数で細かく補正</div>
+        <div class="tool-feature">節約シミュレーション付き</div>
+        <div class="tool-feature">公的統計データをベースに算出</div>
+      </div>
+      <div class="tool-card-foot">
+        <span class="tool-free-badge">✓ 完全無料</span>
+        <span class="tool-cta">診断する →</span>
+      </div>
+    </a>
+
+    <!-- 引越し費用 -->
+    <a href="/tools/moving/" class="tool-card">
+      <div class="tool-card-head">
+        <div class="tool-card-icon">🚚</div>
+        <div class="tool-card-tag">Moving Cost</div>
+        <div class="tool-card-name">引越し費用<br>ざっくり計算</div>
+        <div class="tool-card-desc">時期・距離・荷物量を選ぶだけで、引越し費用の相場レンジを算出。節約できる条件も教えます。</div>
+      </div>
+      <div class="tool-card-body">
+        <div class="tool-feature">繁忙期・通常期の料金差を反映</div>
+        <div class="tool-feature">距離帯×荷物量で相場算出</div>
+        <div class="tool-feature">フリー便・午後便の割引も計算</div>
+        <div class="tool-feature">「いつ動けば安いか」を提案</div>
+      </div>
+      <div class="tool-card-foot">
+        <span class="tool-free-badge">✓ 完全無料</span>
+        <span class="tool-cta">計算する →</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- プライバシー説明 -->
+  <div class="privacy-section fu d3">
+    <div class="privacy-title">個人情報・プライバシーについて</div>
+    <div class="privacy-grid">
+      <div class="privacy-item">🔒 氏名・メールアドレス・電話番号などの個人情報を一切収集しません。</div>
+      <div class="privacy-item">💾 入力した条件はブラウザ内のみで計算されます。外部サーバーへの送信は行いません。</div>
+      <div class="privacy-item">👤 個人が開発・運営するツールです。不動産業者・引越し業者との提携は一切ありません。</div>
+      <div class="privacy-item">📊 計算結果は公的統計・公開データをベースにした参考目安です。実際の費用とは異なる場合があります。</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section fu d4">
+    <div class="privacy-title">よくある質問</div>
+    <details>
+      <summary>本当に無料ですか？<span>▼</span></summary>
+      <div class="faq-ans">はい、完全無料です。有料プランや課金機能はありません。広告が表示されることがありますが、ツールの機能に制限はありません。</div>
+    </details>
+    <details>
+      <summary>住所や氏名を入力する必要はありますか？<span>▼</span></summary>
+      <div class="faq-ans">不要です。市区町村レベルの地域選択のみで、番地・建物名・氏名・メールアドレスなどは一切入力しません。</div>
+    </details>
+    <details>
+      <summary>計算結果はどのくらい正確ですか？<span>▼</span></summary>
+      <div class="faq-ans">総務省「住宅・土地統計調査」や公的相場データをベースに、条件係数を乗算したレンジ推定です。実際の物件価格は個別に異なるため、あくまで目安としてご利用ください。</div>
+    </details>
+    <details>
+      <summary>入力データはどこかに保存されますか？<span>▼</span></summary>
+      <div class="faq-ans">保存されません。すべての計算はブラウザ内で完結し、サーバーへのデータ送信は一切行いません。</div>
+    </details>
+    <details>
+      <summary>引越し業者や不動産業者と提携していますか？<span>▼</span></summary>
+      <div class="faq-ans">提携はありません。個人が開発・運営するツールです。特定業者への誘導や、個人情報の販売は行いません。</div>
+    </details>
+  </div>
+
+  <!-- ブログCTA -->
+  <div class="blog-cta fu d5">
+    <h2>引越しの手続きも<br>まとめて管理しよう</h2>
+    <p>転出届・電気・ガス・銀行など20以上の手続きを<br>期限つきで自動リスト化する無料ツールもあります</p>
+    <a href="https://hikkoshi-shirei-to1.stj212527.workers.dev" class="blog-cta-btn">
+      📋 引っ越し司令塔を使う →
+    </a>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-in">
+    <a href="/" class="logo">
+      <div class="logo-icon" style="width:24px;height:24px;border-radius:7px;font-size:12px">🏠</div>
+      <span class="logo-name" style="font-size:13px">stjLab Tools</span>
+    </a>
+    <span class="footer-copy">個人開発ツール ／ データはブラウザにのみ保存 ／ © 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

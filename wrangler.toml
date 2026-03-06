@@ -1,0 +1,15 @@
+name = "stj-tools"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# ── ルート設定（stjkulab.com/tools/* を このWorkerに割り当て） ──
+routes = [
+  { pattern = "stjkulab.com/tools/*", zone_name = "stjkulab.com" }
+]
+
+# ── 静的HTMLを文字列としてバンドル ──
+[rules]
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true
