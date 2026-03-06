@@ -1,13 +1,10 @@
 {
-  "name": "stj-tools",
+  "name": "hikkoshi-price-tools",
   "version": "1.0.0",
-  "description": "stjLab Tools — 家賃相場診断・引越し費用計算",
-  "main": "src/index.js",
   "scripts": {
-    "dev":    "wrangler dev",
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
-    "wrangler": "^4.0.0"
+    "wrangler": "^3.114.17"
   }
 }

@@ -1,9 +1,8 @@
 /**
- * stj-tools — Cloudflare Worker
- * HTMLを直接文字列として埋め込んだシングルファイル版
+ * stj-tools Worker — HTML直接埋め込み版
  */
 
-const INDEX_HTML  = `<!DOCTYPE html>
+const INDEX_HTML = `<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -271,7 +270,8 @@ details[open] summary{background:rgba(11,76,255,.07)}
 </body>
 </html>
 `;
-const RENT_HTML   = `<!DOCTYPE html>
+
+const RENT_HTML = `<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -1230,6 +1230,7 @@ init();
 </body>
 </html>
 `;
+
 const MOVING_HTML = `<!DOCTYPE html>
 <html lang="ja">
 <head>
